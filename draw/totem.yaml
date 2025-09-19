@@ -1,0 +1,161 @@
+layout: {zmk_keyboard: totem}
+layers:
+  BASE:
+  - Q
+  - W
+  - F
+  - P
+  - G
+  - J
+  - L
+  - U
+  - Y
+  - ;
+  - {t: A, h: Gui}
+  - {t: R, h: Alt}
+  - {t: S, h: Ctrl}
+  - {t: T, h: Shift}
+  - D
+  - H
+  - {t: N, h: Shift}
+  - {t: E, h: Ctrl}
+  - {t: I, h: Alt}
+  - {t: O, h: Gui}
+  - Z
+  - Z
+  - X
+  - C
+  - V
+  - B
+  - K
+  - M
+  - ','
+  - .
+  - /
+  - /
+  - Tab
+  - Tab
+  - {t: Spc, h: NAVI}
+  - {t: Enter, h: SYM}
+  - Bspc
+  - Bspc
+  NAVI:
+  - Esc
+  - BT CLR
+  - ↑
+  - '='
+  - '{'
+  - '}'
+  - KP 7
+  - KP 8
+  - KP 9
+  - KP PLUS
+  - Shift
+  - ←
+  - ↓
+  - →
+  - {t: '[', right: '{'}
+  - {t: ']', right: '}'}
+  - KP 4
+  - KP 5
+  - KP 6
+  - KP MINUS
+  - {type: trans}
+  - Del
+  - PgUp
+  - CAPS
+  - PgDn
+  - (
+  - )
+  - KP 1
+  - KP 2
+  - KP 3
+  - KP MULTIPLY
+  - {type: trans}
+  - {type: trans}
+  - {type: trans}
+  - {type: held}
+  - ADJ
+  - KP 0
+  - {type: trans}
+  SYM:
+  - '!'
+  - '@'
+  - '#'
+  - $
+  - '%'
+  - ^
+  - '&'
+  - AltGr+U
+  - ''''
+  - '"'
+  - AltGr+A
+  - {type: trans}
+  - AltGr+S
+  - {type: trans}
+  - {type: trans}
+  - $$mdi:volume-off$$
+  - Sft+AltGr+4
+  - AltGr+5
+  - AltGr+4
+  - AltGr+O
+  - {type: trans}
+  - AltGr+F18
+  - AltGr+F19
+  - {type: trans}
+  - {type: trans}
+  - {type: trans}
+  - $$mdi:volume-medium$$
+  - $$mdi:volume-high$$
+  - $$mdi:skip-backward$$
+  - $$mdi:skip-forward$$
+  - \
+  - {type: trans}
+  - {type: trans}
+  - '&gif'
+  - ADJ
+  - {type: held}
+  - $$mdi:play-pause$$
+  - {type: trans}
+  ADJ:
+  - Reset
+  - BT CLR
+  - OUT TOG
+  - {type: trans}
+  - {type: trans}
+  - {type: trans}
+  - F7
+  - F8
+  - F9
+  - F12
+  - Boot
+  - BT NXT
+  - {type: trans}
+  - {type: trans}
+  - {type: trans}
+  - {type: trans}
+  - F4
+  - F5
+  - F6
+  - F11
+  - {type: trans}
+  - {type: trans}
+  - BT PRV
+  - {type: trans}
+  - {type: trans}
+  - {type: trans}
+  - {type: trans}
+  - F1
+  - F2
+  - F3
+  - F10
+  - {type: trans}
+  - {type: trans}
+  - {type: trans}
+  - {type: held}
+  - {type: held}
+  - {type: trans}
+  - {type: trans}
+combos:
+- p: [0, 1]
+  k: Esc
