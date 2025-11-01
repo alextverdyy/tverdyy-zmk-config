@@ -28,11 +28,17 @@ manifest:
       url-base: https://github.com/zmkfirmware
     - name: mctechnology17
       url-base: https://github.com/mctechnology17
+    - name: carrefinho                            # <--- add this
+      url-base: https://github.com/carrefinho     # <--- and this
+  
 
   projects:
     - name: zmk
       remote: zmkfirmware
       import: app/west.yml
+    - name: prospector-zmk-module                 # <--- and these
+      remote: carrefinho                          # <---
+      revision: main   
 
     # ZMK modules
     - name: zmk-adaptive-key
