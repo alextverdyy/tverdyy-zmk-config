@@ -57,8 +57,9 @@ clean-nix:
 draw:
     #!/usr/bin/env bash
     set -euo pipefail
-    keymap -c "{{ draw }}/config.yaml" parse -z "{{ config }}/boards/shields/totem/totem.keymap" >"{{ draw }}/totem.yaml"
-    keymap -c "{{ draw }}/config.yaml" draw -z "totem" "{{ draw }}/totem.yaml" -s Base Lower Raise Adjust Nav >"{{ draw }}/totem.svg"
+    keymap -c "{{ draw }}/config.yaml" parse -z "{{ config }}/base.keymap" --virtual-layers Combos >"{{ draw }}/base.yaml"
+    yq -Yi '.combos.[].l = ["Combos"]' "{{ draw }}/base.yaml"
+    keymap -c "{{ draw }}/config.yaml" draw "{{ draw }}/base.yaml" -k "totem" >"{{ draw }}/base.svg"
 
 # initialize west
 init:
