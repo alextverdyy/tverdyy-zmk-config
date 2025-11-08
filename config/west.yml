@@ -30,7 +30,8 @@ manifest:
       url-base: https://github.com/mctechnology17
     - name: carrefinho                            # <--- add this
       url-base: https://github.com/carrefinho     # <--- and this
-  
+    - name: bwshockley
+      url-base: https://github.com/bwshockley 
 
   projects:
     - name: zmk
@@ -39,6 +40,9 @@ manifest:
     - name: prospector-zmk-module                 # <--- and these
       remote: carrefinho                          # <---
       revision: main   
+    - name: zmk-dongle-screen
+      remote: bwshockley
+      revision: main
 
     # ZMK modules
     - name: zmk-adaptive-key
