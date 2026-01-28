@@ -17,7 +17,7 @@ _parse_targets $expr:
 _build_single $board $shield $snippet $artifact *west_args:
     #!/usr/bin/env bash
     set -euo pipefail
-    artifact="${artifact:-${shield:+${shield// /+}-}${board}}"
+    artifact="${artifact:-${shield:+${shield// /+}-}${board//\//_}}"
     build_dir="{{ build / '$artifact' }}"
 
     echo "Building firmware for $artifact..."
@@ -91,7 +91,7 @@ test $testpath *FLAGS:
     if [[ "{{ FLAGS }}" != *"--no-build"* ]]; then
         echo "Running $testcase..."
         rm -rf "$build_dir"
-        west build -s zmk/app -d "$build_dir" -b native_posix_64 -- \
+        west build -s zmk/app -d "$build_dir" -b native_sim/native/64 -- \
             -DCONFIG_ASSERT=y -DZMK_CONFIG="$config_dir"
     fi
 
