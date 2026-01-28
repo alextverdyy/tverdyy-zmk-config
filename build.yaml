@@ -14,7 +14,7 @@
 ---
 include:
   - board: seeeduino_xiao_ble
-    shield: totem_dongle dongle_screen
+    shield: totem_dongle prospector_adapter
     artifact-name: dongle-screen
   - board: seeeduino_xiao_ble
     shield: settings_reset

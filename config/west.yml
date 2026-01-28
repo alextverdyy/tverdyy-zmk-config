@@ -40,17 +40,13 @@ manifest:
       import: app/west.yml
     - name: prospector-zmk-module                 # <--- and these
       remote: carrefinho                          # <---
-      revision: main   
-    - name: zmk-dongle-screen
-      remote: bwshockley
-      revision: main
+      revision: feat/new-status-screens
 
     # ZMK modules
     - name: zmk-adaptive-key
       path: modules/zmk/adaptive-key
     - name: zmk-auto-layer
       path: modules/zmk/auto-layer
-      revision: next
     - name: zmk-helpers
       path: modules/zmk/helpers
     - name: zmk-leader-key
