@@ -7,12 +7,16 @@
     zephyr.flake = false;
 
     # Zephyr sdk and toolchain.
-    zephyr-nix.url = "github:urob/zephyr-nix/dev";
+    zephyr-nix.url = "github:nix-community/zephyr-nix";
     zephyr-nix.inputs.zephyr.follows = "zephyr";
     zephyr-nix.inputs.nixpkgs.follows = "nixpkgs";
+
+    # Devicetree linter; use my fork for nix-package and ZMK-specific tweaks.
+    dts-linter.url = "github:urob/dts-linter/zmk";
+    dts-linter.inputs.nixpkgs.follows = "nixpkgs";
   };
 
-  outputs = { nixpkgs, zephyr-nix, ... }: let
+  outputs = { nixpkgs, zephyr-nix, dts-linter, ... }: let
     systems = ["x86_64-linux" "aarch64-linux" "x86_64-darwin" "aarch64-darwin"];
     forAllSystems = nixpkgs.lib.genAttrs systems;
   in {
@@ -21,12 +25,20 @@
         pkgs = nixpkgs.legacyPackages.${system};
         zephyr = zephyr-nix.packages.${system};
         keymap_drawer = pkgs.python3Packages.callPackage ./nix/keymap-drawer.nix {};
+        dts-format = pkgs.callPackage ./nix/dts-format.nix {
+          dts-linter = dts-linter.packages.${system}.dev;
+        };
+        libatomic = pkgs.runCommand "libatomic" {} ''
+          mkdir -p $out/lib
+          cp -d ${pkgs.stdenv.cc.cc.lib}/lib/libatomic.so* $out/lib/
+        '';
+
       in {
         default = pkgs.mkShellNoCC {
           packages =
             [
               zephyr.pythonEnv
-              (zephyr.sdk-0_17.override {targets = ["arm-zephyr-eabi"];})
+              (zephyr.sdk-0_16.override {targets = ["arm-zephyr-eabi"];})
 
               pkgs.cmake
               pkgs.dtc
@@ -37,6 +49,7 @@
               pkgs.yq # Make sure yq resolves to python-yq.
 
               keymap_drawer
+              dts-format
 
               # -- Used by just_recipes and west_commands. Most systems already have them. --
               # pkgs.gawk
@@ -48,9 +61,14 @@
               # pkgs.gnused
             ];
 
+          env = {
+            PYTHONPATH = "${zephyr.pythonEnv}/${zephyr.pythonEnv.sitePackages}";
+          };
+
           shellHook = ''
             export ZMK_BUILD_DIR=$(pwd)/.build;
             export ZMK_SRC_DIR=$(pwd)/zmk/app;
+            export LD_LIBRARY_PATH="${libatomic}/lib";
           '';
         };
       }
